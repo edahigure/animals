@@ -1,5 +1,18 @@
 /* Database schema to keep the structure of entire database. */
 
+CREATE TABLE owners(
+  id            INT GENERATED ALWAYS AS IDENTITY,
+  full_name    		VARCHAR(100),
+  age               INT,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE species(
+  id            INT GENERATED ALWAYS AS IDENTITY,
+  name    		VARCHAR(100),
+  PRIMARY KEY(id)
+);
+
 CREATE TABLE animals(
   id            INT GENERATED ALWAYS AS IDENTITY,
   name    		VARCHAR(100),
@@ -19,31 +32,3 @@ CREATE TABLE animals(
       ON DELETE SET NULL,
   PRIMARY KEY(id)
 );
-
-CREATE TABLE owners(
-  id            INT GENERATED ALWAYS AS IDENTITY,
-  full_name    		VARCHAR(100),
-  age               INT,
-  PRIMARY KEY(id)
-);
-
-CREATE TABLE species(
-  id            INT GENERATED ALWAYS AS IDENTITY,
-  name    		VARCHAR(100),
-  PRIMARY KEY(id)
-);
-
-CREATE TABLE result(
-    id            INT GENERATED ALWAYS AS IDENTITY,
-    full_name    VARCHAR(100),
-    num          INT,
-    PRIMARY KEY(id)
-);
-
-
-ALTER TABLE animals 
-   ADD FOREIGN KEY (species_id) REFERENCES species (id);
-
-
-ALTER TABLE animals
-ADD species varchar(255);

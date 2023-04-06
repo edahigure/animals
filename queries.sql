@@ -110,13 +110,6 @@ SELECT  species.name, count(animals.name)
 GROUP BY species.name;
 
 
-SELECT  species.name, count(animals.name)
-   FROM animals
-   INNER JOIN species
-   ON animals.species_id = species.id
-GROUP BY species.name;
-
-
 SELECT  animals.name, full_name, species.name as species_name
    FROM animals
    INNER JOIN owners 
@@ -135,17 +128,13 @@ SELECT  animals.name, full_name, escape_attempts
 where full_name = 'Dean Winchester' and escape_attempts = 0;
 
 
-
-INSERT INTO result (full_name, num ) SELECT full_name, COUNT(animals.name)
+SELECT full_name, COUNT(animals.name)
      FROM animals
      INNER JOIN owners 
      ON animals.owners_id = owners.id
-  GROUP BY full_name;
+  GROUP BY full_name
+  order by COUNT(animals.name) DESC LIMIT 1;
 
-
-SELECT  full_name, num
-    from result
-    where num = (SELECT MAX(num) FROM result );
 
 
 
